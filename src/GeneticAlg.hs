@@ -56,7 +56,7 @@ generatePopulation mW is popSize solLen gen = ((member, totalCost) : restOfPopul
   where
     (member, newGen) = randomSolution solLen gen
     totalCost = fitness mW is member
-    (restOfPopulation, finalGen) = generatePopulation mW is (popSize - 1) solLen newGen
+    (restOfPopulation, finalGen) = generatePopulation mW is (popSize - 1) solLen $! newGen
 
 randomSolution :: (RandomGen g) => Int -> g -> ([Flag], g)
 randomSolution 0 gen = ([], gen)
@@ -78,7 +78,7 @@ nextGeneration mW is population popSize crossPoint gen
     | otherwise = (child1 : child2 : restOfNextPop, finalGen)
   where
     (child1, child2, newGen) = getChildren mW is population crossPoint gen
-    (restOfNextPop, finalGen) = nextGeneration mW is population (popSize - 2) crossPoint newGen
+    (restOfNextPop, finalGen) = nextGeneration mW is population (popSize - 2) crossPoint $! newGen
 
 getChildren :: (RandomGen g) => Weight -> [Item] -> V.Vector RatedFlags -> Int -> g -> (RatedFlags, RatedFlags, g)
 getChildren mW is population crossPoint gen
