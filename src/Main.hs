@@ -4,6 +4,8 @@
 -- name: Dominik Nejedlý
 -- year: 2023
 
+-- Main module containing main function operating with input and output
+
 module Main where
 
 import System.Environment (getArgs)
@@ -16,6 +18,10 @@ import Helpers (errorExit)
 import qualified BruteForce as BF (search)
 import qualified GeneticAlg as GA (search)
 
+-- Parse input arguments, parse input instance of knapsack from file or standard input
+-- and print results according to specified input options to standard output. If no solution
+-- is found for the given option '-b' or '-o', its result is False. Results are printed in
+-- order '-i', '-b' and '-o'.
 main :: IO ()
 main = do
     (opts, nonOpts) <- getArgs >>= parseArgs

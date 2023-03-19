@@ -4,6 +4,8 @@
 -- name: Dominik Nejedlý
 -- year: 2023
 
+-- Module providing input arguments processing
+
 module ParseArgs (
     parseArgs,
     iOpt,
@@ -15,12 +17,14 @@ import System.Console.GetOpt (getOpt, usageInfo, ArgDescr(NoArg), ArgOrder(Permu
 
 import Helpers (errorExit)
 
+-- Types of internal representation of input options
 data Options = Options {
     iOpt :: Bool,
     bOpt :: Bool,
     oOpt :: Bool
 } deriving (Show)
 
+-- Default values of input options
 defaultOptions :: Options
 defaultOptions = Options {
     iOpt = False,
@@ -28,6 +32,7 @@ defaultOptions = Options {
     oOpt = False
 }
 
+-- Description of input options
 options :: [OptDescr (Options -> Options)]
 options = [
     Option ['i'] [] (NoArg (\opts -> opts {iOpt = True}))
@@ -40,6 +45,7 @@ options = [
         \ algorithm (False if not found)"
     ]
 
+-- Parse input arguments or terminate the program and print a usage message in case of invalid options.
 parseArgs :: [String] -> IO (Options, [String])
 parseArgs argv =
     case getOpt Permute options argv of

@@ -4,6 +4,8 @@
 -- name: Dominik Nejedlý
 -- year: 2023
 
+-- Module containing data type definitions for internal representation of the knapsack, its parts and its solution
+
 module Types (
     Knapsack(..),
     Item(..),
@@ -26,6 +28,7 @@ data Knapsack = Knapsack {
     items :: [Item]
 }
 
+-- Show internal representation of knapsack instance in predefined (input) format.
 instance Show Knapsack where
     show (Knapsack {maxWeight = mW, minCost = mC, items = is}) =
         "Knapsack {\nmaxWeight: " ++ show mW ++ "\nminCost: " ++ show mC
@@ -39,14 +42,18 @@ data Item = Item {
     cost :: Cost
 }
 
+-- Show internal representation of item instance in predefined (input) format.
 instance Show Item where
     show (Item {weight = w, cost = c}) = "Item {\nweight: "
         ++ show w ++ "\ncost: " ++ show c ++ "\n}"
 
 newtype Solution = Solution {
+    -- Flags indicating selected items (True <=> selected)
     flags :: [Flag]
 }
 
+-- Show internal representation of solution instance in predefined expected
+-- format (i.e. Solution [1 0 1 ...]).
 instance Show Solution where
     show Solution {flags = fs} = "Solution [" ++ foldr formatFlags [] fs
       where
