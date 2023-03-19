@@ -11,7 +11,9 @@ module ParseInput (
 import Text.Parsec (ParseError, char, digit, spaces, string, many1, sepEndBy, parse, try)
 import Text.Parsec.String (Parser)
 import Text.Parsec.Perm ((<$$>), (<||>), permute)
--- import Control.Applicative ((<$>), (<*), (*>))
+
+-- Import due to compatibily with merlin haskell version
+import Control.Applicative ((<$>), (<*), (*>))
 
 import Types (Item(..), Knapsack(..))
 

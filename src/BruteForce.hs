@@ -8,7 +8,8 @@ module BruteForce (
     search
 ) where
 
--- import Control.Applicative ((<$>))
+-- Import due to compatibily with merlin haskell version
+import Control.Applicative ((<$>))
 
 import Types (Knapsack(..), Item(..), Solution(..), RatedFlags, Weight, Cost)
 

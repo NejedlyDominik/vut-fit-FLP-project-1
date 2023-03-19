@@ -42,11 +42,11 @@ search (Knapsack {maxWeight = mW, minCost = mC, items = is}) gen
 geneticAlgorithm :: (RandomGen g) => Weight -> [Item] -> g -> RatedFlags
 geneticAlgorithm mW is gen =
     let
-      solLen = length is
-      crossPoint = round $ crossoverRate * fromIntegral solLen
-      (initPop, newGen) = generatePopulation mW is populationSize solLen gen
+        solLen = length is
+        crossPoint = round $ crossoverRate * fromIntegral solLen
+        (initPop, newGen) = generatePopulation mW is populationSize solLen gen
     in
-      maximumBy compareSol $ runEvolution mW is initPop populationSize numOfGenerations crossPoint newGen
+        maximumBy compareSol $ runEvolution mW is initPop populationSize numOfGenerations crossPoint newGen
   where
     compareSol (_, totalCost1) (_, totalCost2) = compare totalCost1 totalCost2
 
@@ -85,11 +85,11 @@ getChildren mW is population crossPoint gen
     | rate < reproductionRate = (parent1, parent2, newGen3)
     | otherwise =
         let
-          (unmutChildFs1, unmutChildFs2) = crossover parentFs1 parentFs2 crossPoint
-          (childFs1, newGen4) = mutate unmutChildFs1 newGen3
-          (childFs2, finalGen) = mutate unmutChildFs2 newGen4
+            (unmutChildFs1, unmutChildFs2) = crossover parentFs1 parentFs2 crossPoint
+            (childFs1, newGen4) = mutate unmutChildFs1 newGen3
+            (childFs2, finalGen) = mutate unmutChildFs2 newGen4
         in
-          ((childFs1, fitness mW is childFs1), (childFs2, fitness mW is childFs2), finalGen)
+            ((childFs1, fitness mW is childFs1), (childFs2, fitness mW is childFs2), finalGen)
   where
     (rate, newGen1) = randomRate gen
     (parent1@(parentFs1, _), newGen2) = getParent population newGen1
@@ -98,10 +98,10 @@ getChildren mW is population crossPoint gen
 crossover :: [Flag] -> [Flag] -> Int -> ([Flag], [Flag])
 crossover parentFs1 parentFs2 crossPoint =
     let
-      (parentFs11, parentFs12) = splitAt crossPoint parentFs1
-      (parentFs21, parentFs22) = splitAt crossPoint parentFs2
+        (parentFs11, parentFs12) = splitAt crossPoint parentFs1
+        (parentFs21, parentFs22) = splitAt crossPoint parentFs2
     in
-      (parentFs11 ++ parentFs22, parentFs21 ++ parentFs12)
+        (parentFs11 ++ parentFs22, parentFs21 ++ parentFs12)
 
 mutate :: (RandomGen g) => [Flag] -> g -> ([Flag], g)
 mutate sol gen = foldr mutateFlag ([], gen) sol
@@ -115,12 +115,12 @@ mutate sol gen = foldr mutateFlag ([], gen) sol
 getParent :: (RandomGen g) => V.Vector RatedFlags -> g -> (RatedFlags, g)
 getParent population gen =
     let
-      (idx1, newGen) = randomR (0, populationSize - 1) gen
-      (idx2, finalGen) = randomR (0, populationSize - 1) newGen
-      sol1@(_, totalCost1) = population V.! idx1
-      sol2@(_, totalCost2) = population V.! idx2
+        (idx1, newGen) = randomR (0, populationSize - 1) gen
+        (idx2, finalGen) = randomR (0, populationSize - 1) newGen
+        sol1@(_, totalCost1) = population V.! idx1
+        sol2@(_, totalCost2) = population V.! idx2
     in
-      if totalCost1 > totalCost2 then (sol1, finalGen) else (sol2, finalGen)
+        if totalCost1 > totalCost2 then (sol1, finalGen) else (sol2, finalGen)
 
 fitness :: Weight -> [Item] -> [Flag] -> Cost
 fitness mW is fs
