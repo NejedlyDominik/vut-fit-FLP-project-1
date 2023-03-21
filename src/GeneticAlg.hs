@@ -19,10 +19,10 @@ import Types (Knapsack(..), Item(..), Solution(..), RatedFlags, Weight, Cost, Fl
 -- Predefined parameters
 
 populationSize :: Int
-populationSize = 100
+populationSize = 400
 
 numOfGenerations :: Int
-numOfGenerations = 100
+numOfGenerations = 500
 
 crossoverRate :: Double
 crossoverRate = 0.4

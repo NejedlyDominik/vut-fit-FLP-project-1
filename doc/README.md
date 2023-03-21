@@ -10,6 +10,6 @@ Prohledávání hrubou silou odřezává ty části stavového prostoru, které 
 splnit minimální cenu `minCost`.
 
 Genetický algoritmus nevykazuje v současném nastavení přílišnou úspěšnost. Jeho úspěšnost však doně záleží na jeho přednastavených parametrech.
-Aktuálně je velikost populace i počet generací nastaven tak, aby byl celkový výpočet rychlý a stabilněji procházeli alespoň první tři přiložené
-testovací případy. Všechny parametry lze však jednoduše upravovat v souboru `src/GeneticAlg.hs`. Nutno poznamenat, že při větší velikosti populace
-nebo vyšším počtu generací je výpočet znatelně pomalejší.
+Aktuálně je velikost populace i počet generací nastaven tak, aby byl celkový výpočet netrval příliš dlouho a stabilněji procházeli alespoň 3-4
+přiložené testovací případy. Všechny parametry lze však jednoduše upravovat v souboru `src/GeneticAlg.hs`. Nutno poznamenat, že při větší
+velikosti populace nebo vyšším počtu generací je výpočet znatelně pomalejší.
