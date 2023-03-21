@@ -13,3 +13,10 @@ Genetický algoritmus nevykazuje v současném nastavení přílišnou úspěšn
 Aktuálně je velikost populace i počet generací nastaven tak, aby byl celkový výpočet netrval příliš dlouho a stabilněji procházeli alespoň 3-4
 přiložené testovací případy. Všechny parametry lze však jednoduše upravovat v souboru `src/GeneticAlg.hs`. Nutno poznamenat, že při větší
 velikosti populace nebo vyšším počtu generací je výpočet znatelně pomalejší.
+
+Ve výchozím stavu je program připraven pro referenční verzi Haskellu na serveru merlin -- verze 7.6.3.
+
+Pro bezproblémový překlad bez varování pomocí verze 9.2.5 je pro zamezení redundantních importů nutné zakomentovat:
+
+- `import Control.Applicative ((<$>), (<*), (*>))` -- soubor `src\ParseInput.hs` řádek 18.
+- `import Control.Applicative ((<$>))` -- soubor `src\BruteForce.hs` řádek 14.
